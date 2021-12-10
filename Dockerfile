@@ -2,8 +2,10 @@ FROM ubuntu:20.04
 
 RUN --mount=type=cache,target=/var/lib/apt/lists \
     apt-get update && \
-    apt-get install -y --no-install-recommends wget ghostscript ca-certificates libparent-perl make && \
+    apt-get install -y --no-install-recommends wget ghostscript ca-certificates libparent-perl build-essential && \
     apt-get -y autoclean
+
+RUN cpan -i App::cpanminus && cpanm Log::Log4perl Log::Dispatch::File YAML::Tiny File::HomeDir Unicode::GCString
 
 WORKDIR /texlive-install
 COPY ./texlive.profile ./
