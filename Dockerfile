@@ -11,7 +11,7 @@ WORKDIR /texlive-install
 COPY ./texlive.profile ./
 RUN wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz && \
     tar xvf install-tl-unx.tar.gz --strip-components=1 && \
-    perl ./install-tl --profile=texlive.profile && rm -rf /texlive-install
+    perl ./install-tl --profile=texlive.profile --repository https://mirror.ctan.org/systems/texlive/tlnet && rm -rf /texlive-install
 
 WORKDIR /
 RUN ln -sf /usr/local/texlive/*/bin/* /usr/local/bin/texlive
